@@ -1,10 +1,23 @@
 name: VPN Gate Node Check
 
 on:
-  # 定时检测: 默认每 30 分钟一次。改成每 60 分钟: cron: "0 * * * *"
+  # 定时检测: 目标每 30 分钟一次。
+  # ⚠ GitHub 的 schedule 事件不保证准时: 官方文档明确说明高负载时会延迟,
+  #   负载过高时排队中的运行会被直接丢弃。本仓库实测 `*/30` 实际只会
+  #   每隔数小时才真正触发一次(父仓库同样症状)。
+  #   这里把分钟数从 0/30 改到 7/37, 避开官方点名的整点高负载窗口,
+  #   只降低被延迟的概率, 并不能保证 30 分钟精度。
+  # 需要严格 30 分钟节奏时, 请用外部定时器(路由器/NAS/服务器 crontab)
+  # 调用 workflow_dispatch 或 repository_dispatch, 不要依赖 schedule:
+  #   curl -X POST -H "Authorization: Bearer <PAT,需 Actions:write>" \
+  #     -H "Accept: application/vnd.github+json" \
+  #     https://api.github.com/repos/wuchen-beifeng/gate/actions/workflows/check.yml/dispatches \
+  #     -d '{"ref":"main"}'
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "7,37 * * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [gate-check]
 
 permissions:
   contents: read
@@ -71,4 +84,6 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Show site URL
-        run: 'echo "site: https://jerylihub.github.io/gate/ (deploy outcome: ${{ steps.deployment.outcome }})"'
+        run: |
+          echo "trigger: ${{ github.event_name }}"
+          echo "site: https://wuchen-beifeng.github.io/gate/ (deploy outcome: ${{ steps.deployment.outcome }})"
