@@ -51,7 +51,7 @@ VPNGATE_MIRROR = os.environ.get(
     "https://raw.githubusercontent.com/fdciabdul/Vpngate-Scraper-API/main/json/data.json",
 )
 # 已部署的 Cloudflare Worker 检测接口 (GET /check?proxyip=host:port, 实测确认)
-WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://ch.helei.kdns.fr/check?sstp=vpn:vpn@")
+WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://fff.678985211.xyz/check?sstp=vpn:vpn@")
 CONCURRENCY = max(1, int(os.environ.get("CHECK_CONCURRENCY", "32")))   # 与 Worker 网页端一致的并发模型
 CHECK_TIMEOUT = float(os.environ.get("CHECK_TIMEOUT", "90"))          # 单请求客户端超时 (秒)
 MAX_CHECK_NODES = int(os.environ.get("MAX_CHECK_NODES", "0"))         # 0=不限; 本地测试可设小值
@@ -460,7 +460,7 @@ EDGE_HOSTS = [
     h.strip()
     for h in os.environ.get(
         "EDGE_HOSTS",
-        "www.5199dy.com:443,hzytjy.cn:443,ali.nonull.pp.ua:443,auto.dolby.dpdns.org:443,"
+        "networksolutions.com:443,aandd.co.jp:443,cf.777791.xyz:443,jellyfin.roddy.eu.cc:443,01-cctv.com:443,mokeedev.com:443,ikankeji.com:443,cf.468123.xyz:443,qoj.ac:443,totoro.im:443,brandstudio.com:443,ys2046.cv:443,leawo.org:443,griditapp.com:443,sunkist.com:443,hsl.upstate.edu:443,www.swowd.com:443,www.stayaka.com:443,www.udacity.com:443,constitution.congress.gov:443,c-power.com.cn:443,zabc.net:443,www.lbl.gov:443,cfip-ct.stoeaves.us.ci:443,thebeat.gehealthcare.com:443,www.gov.il:443,clickhouse.com:443,idc.urkeji.com:443,cf2.996616.xyz:443,bbs.alipansou.com:443,rarbg.proxyninja.org:443,cf.254301.xyz:443,cdn.sketch.com:443,prizepicks.com:443,www.eccu.edu:443,macked.app:443,kniu.cc:443,www.apnic.net:443,img.imgdd.com:443,lt.1930812.xyz:443,i.pixiv.re:443,journeys.com:443,yd.zhuqq.qzz.io:443,www.scayle.com:443,autz.org:443,development.ihg.com:443,99.co:443,academy.7shifts.com:443,www.loc.gov:443,2x.nz:443,www.acces-maroc.ma:443,api.producthunt.com:443,ncdc.gov.ng:443,mail.murata.com:443,cn.vuejs.org:443,cdn.tzpro.xyz:443,yong.m123.org:443,helium.computer:443,mrmacintosh.com:443,cf.1o.ee:443,coreweave.com:443,scalacube.com:443,cdn.cnno.de:443,cf.itv888.cn:443,rocketreach.co:443,kernelsu.com:443,cf.877774.xyz:443,www.jp.pima.gov:443,cdn.204910.best:443,www.dwk.com:443"
         "cdn.cnno.de:443,saas.sin.fan:443,cf.1o.ee:443",
     ).split(",")
     if h.strip()
@@ -522,8 +522,8 @@ def build_hosts_text(data):
 
 
 # edgetunnel 完整订阅 (vless://) 配置
-EDT_UUID = os.environ.get("EDT_UUID", "a664b457-d1aa-4671-bcdd-ad2eb31414ec")
-EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "xi.xiaohe.gv.uy")
+EDT_UUID = os.environ.get("EDT_UUID", "b516b020-9c6e-446b-8956-28dbf562eb78")
+EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "cc.678985211.xyz")
 EDT_FINGERPRINT = os.environ.get("EDT_FINGERPRINT", "chrome")
 SUB_URL = os.environ.get("SUB_URL", "https://jerylihub.github.io/gate/sub.txt")
 
